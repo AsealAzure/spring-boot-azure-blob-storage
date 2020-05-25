@@ -38,7 +38,39 @@ Or we pass it as spring boot env arguments.
 gradlew clean build
 ``
 ## Run with Gradle
+
+If AZURE_STORAGE_CONTAINER_NAME and AZURE_STORAGE_CONNECTION_STRING updated on the application.yml 
+then we can start the server by 
+
 ``
 gradlew bootRun
 ``
 
+OR this way if we want to pass it as env config. 
+
+``
+set AZURE_STORAGE_CONTAINER_NAME=<container name> & set AZURE_STORAGE_CONNECTION_STRING=<connection_string>  &  gradlew bootRun
+``
+
+## Operations
+
+### List Files under the storage.
+
+* Call this endpoint URL to know the list of files under storage.
+
+    ``
+    curl -X "GET" http://localhost:8080/storage/files
+    ``
+* Call this endpoint to upload a file
+
+    ``
+    curl -X "POST" -F 'file=@/home/petehouston/hello.txt' http://localhost:8080/storage/upload
+    ``
+* Call this endpoint to delete a file
+
+    ``
+    curl -X "DELETE" http://localhost:8080/storage/delete/<filename>
+    ``
+## References
+
+[Blob Reference](https://docs.microsoft.com/en-in/azure/storage/blobs/storage-quickstart-blobs-java)
