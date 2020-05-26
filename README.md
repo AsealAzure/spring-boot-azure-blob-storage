@@ -54,8 +54,6 @@ set AZURE_STORAGE_CONTAINER_NAME=<container name> & set AZURE_STORAGE_CONNECTION
 
 ## Operations
 
-### List Files under the storage.
-
 * Call this endpoint URL to know the list of files under storage.
 
     ``
@@ -71,6 +69,12 @@ set AZURE_STORAGE_CONTAINER_NAME=<container name> & set AZURE_STORAGE_CONNECTION
     ``
     curl -X "DELETE" http://localhost:8080/storage/delete/<filename>
     ``
+* Call this endpoint to download a file
+
+    ``
+    curl -X "GET" http://localhost:8080/storage/download/<filename>
+    ``
+
 ## References
 
 [Blob Reference](https://docs.microsoft.com/en-in/azure/storage/blobs/storage-quickstart-blobs-java)

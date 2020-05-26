@@ -49,16 +49,8 @@ public class BlobStorageService {
         blobAsyncClient.delete().block();
     }
 
-    public ByteArrayOutputStream download(String fileName) {
+    public byte[] download(String fileName) {
         BlobAsyncClient blobAsyncClient = blobContainerAsyncClient.getBlobAsyncClient(fileName);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        blobAsyncClient.download().subscribe(byteBuffer -> {
-            try {
-                byteArrayOutputStream.write(byteBuffer.array());
-            } catch (IOException e) {
-                throw new UncheckedIOException(e);
-            }
-        });
-        return byteArrayOutputStream;
+        return blobAsyncClient.download().blockLast().array();
     }
 }

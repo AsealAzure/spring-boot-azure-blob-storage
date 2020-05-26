@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
@@ -36,7 +37,8 @@ public class StorageOperationController {
     }
 
     @GetMapping(value = "/download/{fileName}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public @ResponseBody byte[] handleFileDownload(@PathVariable String fileName) throws IOException {
-         return blobStorageService.download(fileName).toByteArray();
+    public @ResponseBody byte[] handleFileDownload(HttpServletResponse response, @PathVariable String fileName) throws IOException {
+        response.addHeader("Content-Disposition", "attachment; filename="+fileName);
+        return blobStorageService.download(fileName);
     }
 }
