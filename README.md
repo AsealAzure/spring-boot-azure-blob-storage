@@ -1,5 +1,5 @@
 # Spring Boot App for operation on Azure Blob Storage
-
+Azure blob storage code sample
 ## Key concepts
 This project is an example for communicating with the Azure Blob storage using the Spring Boot.
 
